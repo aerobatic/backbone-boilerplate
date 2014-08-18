@@ -29,7 +29,7 @@ define(function(require) {
     });
 
     afterEach(function() {
-      a = 0
+      a = 0;
     });
 
     it("should increment value", function() {

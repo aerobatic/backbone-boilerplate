@@ -71,7 +71,7 @@ define(function(require) {
         semaphore--;
       }, 500);
 
-      waitsFor(function() { return semaphore === 0 });
+      waitsFor(function() { return semaphore === 0; });
     });
   });
 });

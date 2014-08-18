@@ -1,29 +1,7 @@
-![Boilerplate](https://github.com/backbone-boilerplate/backbone-boilerplate/raw/assets/header.png)
-
-[![Build Status](https://travis-ci.org/backbone-boilerplate/backbone-boilerplate.png?branch=master)](https://travis-ci.org/backbone-boilerplate/backbone-boilerplate) [![Coverage Status](https://coveralls.io/repos/backbone-boilerplate/backbone-boilerplate/badge.png)](https://coveralls.io/r/backbone-boilerplate/backbone-boilerplate) [![Dependency Status](https://gemnasium.com/backbone-boilerplate/backbone-boilerplate.png)](https://gemnasium.com/backbone-boilerplate/backbone-boilerplate)
-
 Backbone Boilerplate
 ====================
 
-This boilerplate is the product of much research and frustration.  Existing
-boilerplates freely modify Backbone core, lack a build process, and are very
-prescriptive; Backbone Boilerplate changes that.
-
-The Backbone Boilerplate is a way of organizing a web application with some
-opinionated defaults: such as Backbone, Lo-Dash (Underscore compatibility
-build), jQuery, RequireJS, Bower, Grunt, Karma, and the HTML5 Boilerplate
-styles.  Built in testing support for: QUnit, Jasmine, and Mocha with Chai.
-
-Organize your application with a logical file structure, develop your
-Models/Collections/Views/Routers inside modules, and build knowing you have
-efficient code that will not bottleneck your users.
-
-Thanks to our
-[Contributors](https://github.com/backbone-boilerplate/backbone-boilerplate/contributors)!  Special Thanks to: [cowboy](http://github.com/cowboy),
-[iros](http://github.com/iros), [nimbupani](http://github.com/nimbupani),
-[wookiehangover](http://github.com/wookiehangover), and
-[jugglinmike](http://github.com/jugglinmike) for helping me create this project.  Extra Special Thanks to: [Paul Guinan](http://bigredhair.com/work/paul.html)
-for giving me usage rights to his fantastic Boilerplate character.
+This boilerplate is a solid starting point for building a new Backbone application with the [Aerobatic HTML5 cloud platform](http://www.aerobatic.io). It is forked from the [Backbone Boilerplate](https://github.com/backbone-boilerplate/backbone-boilerplate) repo developed by @tbranyen with contributions from several prominent members of the Backbone community. It uses requirejs for dependency management and comes ready with unit testing all setup.
 
 ## Documentation ##
 
@@ -31,16 +9,7 @@ for giving me usage rights to his fantastic Boilerplate character.
 
 ## Getting started ##
 
-The easiest way to get started is to install Git and clone the repository:
-
-``` bash
-# Using Git, fetch only the latest commits.  You won't need the full history
-# for your project.
-git clone --depth 1 https://github.com/backbone-boilerplate/backbone-boilerplate
-
-# Move the repository to your own project name.
-mv backbone-boilerplate my-project
-```
+You can create your own Aerobatic app based on this template by logging in with GitHub at http://www.aerobatic.io and selecting "Backbone Boilerplate" in the setup instructions.
 
 You will need to download and install [Node.js](http://nodejs.org/) if you want
 to use the commands in the following sections.
@@ -72,10 +41,10 @@ to optimize your application.
 
 ``` bash
 # To run the build process, run the default Grunt task.
-grunt
+grunt build
 
 # Run a build and test the now optimized assets.
-grunt default server:release
+grunt sim --open
 ```
 
 ## Running tests ##
