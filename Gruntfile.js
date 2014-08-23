@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     },
     cssmin: {
       minify: {
-        src: ['app/styles/index.css'],
+        src: ['bower_components/pure/pure.css', 'app/styles/index.css'],
         dest: 'dist/styles.min.css'
       }
     },
@@ -23,16 +23,16 @@ module.exports = function(grunt) {
         files: ['index.html']
       },
       js: {
-        files: ['js/**/*.js'],
+        files: ['app/**/*.js'],
         tasks: ['jshint']
       },
       css: {
-        files: ['css/*.css']
+        files: ['app/styles/*.css']
       }
     },
     aerobatic: {
       deploy: {
-        src: ['index.html', 'dist/**/*.*', 'app/img/*.*', 'favicon.ico']
+        src: ['index.html', 'dist/**/*.*', 'app/img/*.*', 'favicon.ico', 'app/templates/*.html']
       },
       sim: {
         index: 'index.html',
@@ -45,7 +45,7 @@ module.exports = function(grunt) {
         options: {
           mainConfigFile: "app/config.js",
           generateSourceMaps: true,
-          include: ["main"],
+          include: ["main", "views/index"],
           out: "dist/source.min.js",
           optimize: "uglify2",
           baseUrl: "app",
@@ -82,6 +82,7 @@ module.exports = function(grunt) {
         frameworks: ['mocha'],
         browsers: ["PhantomJS"],
         logLevel: 'INFO',
+        // Take your pick of test frameworks
         plugins: [
           "karma-jasmine",
           "karma-mocha",

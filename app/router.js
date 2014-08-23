@@ -3,6 +3,7 @@ define(function(require, exports, module) {
 
   // External dependencies.
   var Backbone = require("backbone");
+  var IndexView = require('views/index');
 
   // Defining the application router.
   var Router = Backbone.Router.extend({
@@ -12,6 +13,12 @@ define(function(require, exports, module) {
 
     index: function() {
       console.log("Welcome to your / route.");
+      // var indexView = new IndexView();
+      new IndexView().render();
+    },
+
+    detail: function() {
+      console.log("Detail view");
     }
   });
 
