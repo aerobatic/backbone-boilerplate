@@ -6,7 +6,10 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     jshint: {
-      all: ['Gruntfile.js', 'app/**/*.js', 'test/**/*.js']
+      options: {
+        ignores: ['app/tmp/templates.js']
+      },
+      all: ['Gruntfile.js', 'app/**/*.js', 'test/**/*.js'],
     },
     cssmin: {
       minify: {
@@ -22,6 +25,10 @@ module.exports = function(grunt) {
       html: {
         files: ['index.html']
       },
+      templates: {
+        files: ['app/templates/**/*.html'],
+        tasks: ['jst']
+      },
       js: {
         files: ['app/**/*.js'],
         tasks: ['jshint']
@@ -32,7 +39,7 @@ module.exports = function(grunt) {
     },
     aerobatic: {
       deploy: {
-        src: ['index.html', 'dist/**/*.*', 'app/img/*.*', 'favicon.ico', 'app/templates/*.html']
+        src: ['index.html', 'dist/**/*.*', 'app/img/*.*', 'favicon.ico']
       },
       sim: {
         index: 'index.html',
@@ -40,12 +47,26 @@ module.exports = function(grunt) {
         livereload: true
       },
     },
+    jst: {
+      compile: {
+        options: {
+          templateSettings: {
+            interpolate : /\{\{(.+?)\}\}/g
+          },
+          namespace: 'templates',
+          amd: true
+        },
+        files: {
+          "app/tmp/templates.js": ["app/templates/**/*.html"]
+        }
+      }
+    },
     requirejs: {
       release: {
         options: {
           mainConfigFile: "app/config.js",
           generateSourceMaps: true,
-          include: ["main", "views/index"],
+          include: ["main"],
           out: "dist/source.min.js",
           optimize: "uglify2",
           baseUrl: "app",
@@ -99,16 +120,17 @@ module.exports = function(grunt) {
   });
 
   // Specify the sync arg to avoid blocking the watch
-  grunt.registerTask('sim', ['aerobatic:sim:sync', 'watch']);
+  grunt.registerTask('sim', ['jst', 'aerobatic:sim:sync', 'watch']);
   grunt.registerTask('deploy', ['build', 'aerobatic:deploy']);
   grunt.registerTask('test', ['jshint', 'karma']);
 
-  grunt.registerTask('build', ['jshint', 'cssmin', 'requirejs']);
+  grunt.registerTask('build', ['jshint', 'cssmin', 'jst', 'requirejs']);
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-aerobatic');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-jst');
   grunt.loadNpmTasks('grunt-karma');
 };

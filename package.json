@@ -1,6 +1,10 @@
 {
   "name": "backbone-boilerplate",
-  "version": "1.0.0",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/aerobatic/backbone-boilerplate.git"
+  },
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-jshint": "~0.10.0",
@@ -17,7 +21,8 @@
     "karma-phantomjs-launcher": "~0.1.4",
     "karma-coverage": "~0.2.4",
     "grunt-aerobatic": "^0.2.1",
-    "grunt-contrib-watch": "^0.6.1"
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-jst": "^0.6.0"
   },
   "peerDependencies": {
     "generator-bbb": "*",
