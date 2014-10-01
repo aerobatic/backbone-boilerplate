@@ -39,10 +39,10 @@ module.exports = function(grunt) {
     },
     aerobatic: {
       deploy: {
+        cowboy: true,
         src: ['index.html', 'dist/**/*.*', 'app/img/*.*', 'favicon.ico']
       },
       sim: {
-        index: 'index.html',
         port: 3000,
         livereload: true
       },
