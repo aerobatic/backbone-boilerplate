@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 
     jshint: {
       options: {
-        ignores: ['app/tmp/templates.js']
+        ignores: ['app/js/tmp/*.js']
       },
       all: ['Gruntfile.js', 'app/**/*.js', 'test/**/*.js'],
     },
@@ -15,6 +15,15 @@ module.exports = function(grunt) {
       minify: {
         src: ['bower_components/pure/pure.css', 'app/styles/index.css'],
         dest: 'dist/styles.min.css'
+      }
+    },
+    copy: {
+      dist: {
+        files: [
+          {src: 'app/index.html', dest: 'dist/index.html'},
+          {src: 'app/favicon.ico', dest: 'dist/favicon.ico'},
+          {expand: true, cwd:'app', src: ['img/**'], dest: 'dist/'}
+        ]
       }
     },
     watch: {
@@ -37,16 +46,6 @@ module.exports = function(grunt) {
         files: ['app/styles/*.css']
       }
     },
-    aerobatic: {
-      deploy: {
-        cowboy: true,
-        src: ['index.html', 'dist/**/*.*', 'app/img/*.*', 'favicon.ico']
-      },
-      sim: {
-        port: 3000,
-        livereload: true
-      },
-    },
     jst: {
       compile: {
         options: {
@@ -57,23 +56,20 @@ module.exports = function(grunt) {
           amd: true
         },
         files: {
-          "app/tmp/templates.js": ["app/templates/**/*.html"]
+          "app/js/tmp/templates.js": ["app/templates/**/*.html"]
         }
       }
     },
     requirejs: {
       release: {
         options: {
-          mainConfigFile: "app/config.js",
+          mainConfigFile: "app/js/config.js",
           generateSourceMaps: true,
           include: ["main"],
           out: "dist/source.min.js",
           optimize: "uglify2",
-          baseUrl: "app",
-          paths: {
-            almond: '../bower_components/almond/almond'
-          },
-
+          baseUrl: "app/js",
+          
           // Include a minimal AMD implementation shim.
           name: "almond",
 
@@ -120,15 +116,13 @@ module.exports = function(grunt) {
   });
 
   // Specify the sync arg to avoid blocking the watch
-  grunt.registerTask('sim', ['jst', 'aerobatic:sim:sync', 'watch']);
-  grunt.registerTask('deploy', ['build', 'aerobatic:deploy']);
   grunt.registerTask('test', ['jshint', 'karma']);
 
-  grunt.registerTask('build', ['jshint', 'cssmin', 'jst', 'requirejs']);
+  grunt.registerTask('build', ['jshint', 'cssmin', 'jst', 'copy:dist', 'requirejs:release']);
 
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-aerobatic');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   grunt.loadNpmTasks('grunt-contrib-jst');

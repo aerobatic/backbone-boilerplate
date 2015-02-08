@@ -1,7 +1,7 @@
 define(function(require, module) {
   var Backbone = require('backbone');
   var app = require('app');
-  var Templates = require('tmp/templates');
+  var Templates = require('../tmp/templates');
 
   var IndexView = Backbone.View.extend({
     el: 'body',

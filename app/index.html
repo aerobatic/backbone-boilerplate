@@ -8,8 +8,8 @@
   <title>Backbone Boilerplate for Aerobatic</title>
 
   <!-- Application styles. -->
-  <link data-aero-build="release" rel="stylesheet" href="/dist/styles.min.css">
-  <link data-aero-build="debug" rel="stylesheet" href="/app/styles/index.css">
+  <link data-aero-build="release" rel="stylesheet" href="styles.min.css">
+  <link data-aero-build="debug" rel="stylesheet" href="styles/index.css">
   <link data-aero-build="debug" href="/bower_components/pure/pure.css">
 
   <link rel="icon" href="/favicon.ico">
@@ -24,7 +24,7 @@
   For release builds only reference a single script that includes the lightweight Almond
   AMD shim along with the compressed contents of all the vendor and app scripts.
   -->
-  <script data-aero-build="debug" src="/bower_components/requirejs/require.js" data-main="/app/config"></script>
-  <script data-aero-build="release" src="dist/source.min.js"></script>
+  <script data-aero-build="debug" src="/bower_components/requirejs/require.js" data-main="/js/config"></script>
+  <script data-aero-build="release" src="source.min.js"></script>
 </body>
 </html>
