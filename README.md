@@ -13,7 +13,7 @@ Make sure you have the yoke-cli tool installed: `npm install -g yoke-cli`
 Create your own Aerobatic app based on this template by running the following:
 
 ```
-yoke create-app --github-repo 'aerobatic/backbone-boilerplate'
+yoke create-app --github-repo 'aerobatic/backbone-boilerplate' --github-branch 'grunt-yoke'
 ```
 
 
