@@ -97,14 +97,14 @@ module.exports = function(grunt) {
         ],
         // Choose between mocha, jasmine, or qunit
         frameworks: ['mocha'],
-        browsers: ["PhantomJS"],
+        browsers: ["Chrome"],
         logLevel: 'INFO',
         // Take your pick of test frameworks
         plugins: [
           "karma-jasmine",
           "karma-mocha",
           "karma-qunit",
-          "karma-phantomjs-launcher",
+          "karma-chrome-launcher",
           "karma-coverage"
         ],
         reporters: 'dots'
